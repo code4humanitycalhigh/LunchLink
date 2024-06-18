@@ -1,10 +1,18 @@
-from flask import Flask
+import os
+import logging
+
+from flask import Flask, render_template, request, jsonify
+# Change the format of messages logged to Stackdriver
+logging.basicConfig(format='%(message)s', level=logging.INFO)
+
 app = Flask(__name__)
-app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 0
+
+# -----------FLASK PAGES
+@app.route("/",methods=['GET','POST'])
+def index():
+
+    return render_template("index.html")
 
 
 if __name__ == '__main__':
-
- app.run(debug=True,port=8080,host="0.0.0.0")
-
-import views
+	app.run(debug=True, host='0.0.0.0', port=int(os.environ.get('PORT', 8080)))
