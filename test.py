@@ -36,6 +36,7 @@ with open('config.json') as config_file:
 
 @app.route('/', methods=['GET'])
 def homepage():
+    print(config.get('SECRET_KEY'))
     service = get_service()
     spreadsheet_id = config.get('GOOGLE_SPREADSHEET_ID')
     range_name = config.get('GOOGLE_CELL_RANGE')
