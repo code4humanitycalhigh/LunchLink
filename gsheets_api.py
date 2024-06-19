@@ -1,7 +1,7 @@
-from flask import Flask, render_template
 import googleapiclient.discovery
 from google.oauth2 import service_account
 import json
+import pandas as pd
 
 
 
@@ -27,26 +27,20 @@ def get_service(service_name='sheets', api_version='v4'):
     return service
 
 
-app = Flask(__name__)
-
-# Load configuration from JSON file
 with open('config.json') as config_file:
     config = json.load(config_file)
 
+def upload_sheets_data():
+  service = get_service()
+  spreadsheet_id = config.get('GOOGLE_SPREADSHEET_ID')
+  range_name = config.get('GOOGLE_CELL_RANGE')
 
-@app.route('/', methods=['GET'])
-def homepage():
-    print(config.get('SECRET_KEY'))
-    service = get_service()
-    spreadsheet_id = config.get('GOOGLE_SPREADSHEET_ID')
-    range_name = config.get('GOOGLE_CELL_RANGE')
-
-    result = service.spreadsheets().values().get(
-        spreadsheetId=spreadsheet_id, range=range_name).execute()
-    values = result.get('values', [])
-
-    return render_template('index.html', values=values)
+  result = service.spreadsheets().values().get(
+    spreadsheetId=spreadsheet_id, range=range_name).execute()
+  values = result.get('values', [])
+  columns=values.pop(0)
+  df = pd.DataFrame(values, columns = ["Timestamp","Q1","Q2","Q3","Feedback"])
+  df.to_csv("form.csv",index=None)
+  
 
 
-if __name__ == '__main__':
-    app.run(debug=True)
