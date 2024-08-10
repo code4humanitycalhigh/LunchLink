@@ -1,0 +1,214 @@
+
+*, body, html{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: 'Assistant';
+  --main-white: rgb(252, 252, 247);
+  --light-green: rgb(145, 209, 145);
+  --light-green-transparent: rgba(160, 221, 160, 0.5);
+  --dark-grey: rgb(70, 70, 70);
+  scroll-behavior: smooth;
+}
+
+/* Navbar styling */
+header{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: row;
+  padding: 15px;
+  height: 10vh;
+  font-size: 25px;
+  font-weight: 600;
+  background-color: var(--light-green);
+  border-bottom: 5px solid gray;
+}
+
+.nav-right a{
+  padding-left: 80px;
+  text-decoration: none;
+}
+
+/* Main body styling for home */
+.main-body{
+  display: flex;
+  height: 90vh;
+  justify-content: center;
+  align-content: center;
+  flex-direction: row;
+  background-color: rgba(0, 0, 0, 0);
+}
+
+.background{
+  background: url('../images/leaves-background.jpg');
+  background-size: cover;
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  bottom: 0px;
+  left: 0px;
+  opacity: 0.25;
+  z-index: -1;
+}
+
+.main-left{
+  height: 100%;
+  width: 50vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+  font-size: 30px;
+  color: var(--light-green);
+}
+
+.text{
+  text-align: left;
+}
+
+.text h1 b{
+  font-weight: 1000;
+  color: black;
+}
+
+.main-left button{
+  width: 25vw;
+  padding: 15px;
+  border: none;
+  background-color: var(--light-green);
+  border-radius: 5px;
+  color: white;
+  font-size: 20px;
+  a{
+      background-color: var(--light-green);
+      color: white;
+      text-decoration: none;
+  }
+}
+
+.main-left button:hover{
+  background-color: white;
+  border: 2px solid var(--light-green);
+  color: var(--light-green);
+  transition: .5s;
+
+  a{
+      background-color: white;
+      transition: .5s;
+      text-decoration: none;
+      color: var(--light-green);
+  }
+}
+
+.main-right{
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: auto;
+  text-align: center;
+
+  .right-img{
+      width: 60vh;
+      height: 60vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      aspect-ratio: 1/1;
+      border: 10px solid var(--light-green-transparent);
+      border-radius: 100%;
+
+      .img-wrapper{
+          width: 65vh;
+          aspect-ratio: 1/1;
+          background: url('../images/food-bowl.png');
+          margin: auto;
+          background-position: center;
+          background-size: contain;
+      }
+  }
+}
+
+/* Parallax section */
+.parallax{
+  height: 400px;
+  width: 100vw;
+  background: url('../images/parallax-img.avif');
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+/* Home 2 styling */
+.home-2{
+  background-color: var(--light-green);
+  color: var(--dark-grey);
+  text-align: center;
+  padding: 30px;
+  height: 80vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background: url('../images/leaves-background-2.png');
+  background-size: cover;
+}
+
+.home-2 h3{
+  font-weight: 300;
+  font-size: 25px;
+}
+
+.home-2 h3 b{
+  font-weight: 800;
+  color: black;
+}
+
+.stats-container{
+  margin-top: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.stat{
+  width: 20vw;
+  background-color: var(--main-white);
+  border-radius: 20px;
+  height: 40vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+}
+
+.stat h1{
+  margin-bottom: 30px;
+  font-size: 60px;
+  color: rgb(57, 169, 70);
+}
+
+.stat p{
+  font-size: 20px;
+  color: var(--dark-grey);
+}
+
+/* Table styling */
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
