@@ -17,17 +17,35 @@ header{
   align-items: center;
   justify-content: space-between;
   flex-direction: row;
-  padding: 15px;
-  height: 10vh;
+  padding-right: 40px;
+  padding-bottom:10px;
+  height: 7vh;
   font-size: 25px;
   font-weight: 600;
   background-color: var(--light-green);
-  border-bottom: 5px solid gray;
+  background:
+    linear-gradient(
+      to top, 
+      var(--main-white) 0%,
+      lightgrey 15%,
+
+      var(--light-green) 16%
+    )
+    left 
+    bottom
+    
+    no-repeat; 
+
 }
 
 .nav-right a{
-  padding-left: 80px;
+  padding-left: 100px;
+
+  
   text-decoration: none;
+  font-size: 15px;
+  
+  
 }
 
 /* Main body styling for home */
@@ -44,7 +62,7 @@ header{
   background: url('../images/leaves-background.jpg');
   background-size: cover;
   position: absolute;
-  top: 0px;
+  top: 30px;
   right: 0px;
   bottom: 0px;
   left: 0px;
@@ -71,6 +89,11 @@ header{
 .text h1 b{
   font-weight: 1000;
   color: black;
+}
+
+.text h2{
+  font-weight: 100;
+  color: var(--light-green);
 }
 
 .main-left button{

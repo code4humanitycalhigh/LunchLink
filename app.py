@@ -11,7 +11,7 @@ def homepage():
     upload_sheets_data() #updates form.csv
     df=pd.read_csv("form.csv")
     
-    return render_template('index.html',column_names=df.columns.values, row_data=list(df.values.tolist()),zip=zip)
+    return render_template('home.html',column_names=df.columns.values, row_data=list(df.values.tolist()),zip=zip)
 
 
 if __name__ == '__main__':
