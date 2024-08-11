@@ -1,6 +1,7 @@
 from flask import Flask, render_template
 from gsheets_api import upload_sheets_data
 import pandas as pd
+from charts import pie1, pie2, bar1, bar2
 
 app = Flask(__name__)
 
@@ -22,7 +23,7 @@ def calendar():
 
 @app.route('/analytics', methods=['GET'])
 def analytics():
-    return render_template('analytics.html')
+    return render_template('analytics.html', pie=pie1, bar=bar1)
 
 if __name__ == '__main__':
     app.run(debug=True)

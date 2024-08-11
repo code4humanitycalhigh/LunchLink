@@ -48,6 +48,10 @@ header{
   
 }
 
+#graph{
+  width: 100%;
+}
+
 /* Main body styling for home */
 .main-body{
   display: flex;

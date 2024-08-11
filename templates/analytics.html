@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../static/css/style.css">
     <link href='https://fonts.googleapis.com/css?family=Assistant' rel='stylesheet'>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/he/1.2.0/he.min.js"></script>
     <!-- <script src="script.js"></script> -->
     <title>Document</title>
 </head>
@@ -24,7 +26,24 @@
     <!-- Main body -->
     <div class="main-body">
         <div class="background"></div>
-        <!-- Left and right (links and image) -->
+        
+        <script src="../static/js/loadCharts.js"></script>
+        <script type="text/javascript">
+            window.addEventListener('load', function () {
+              var graph = ('{{pie}}');
+              createGraph(graph, "graph");
+            })
+          </script>
+          <div id="graph"></div>
+
+
+          <script type="text/javascript">
+            window.addEventListener('load', function () {
+              var graph = ('{{bar}}');
+              createGraph(graph, "graph");
+            })
+          </script>
+          <div id="graph"></div>
         
         
         <div class="main-right"></div>
