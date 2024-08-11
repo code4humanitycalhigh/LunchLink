@@ -22,40 +22,45 @@ def generate_pie(df,title, colors = None):
             textinfo='label+percent',
             textfont_size=12,
             marker=dict(colors=colors, 
-                        line=dict(color='rgba(36,37,45,255)', width=2))
+                        line=dict(color='white', width=5))
     )
-    fig.update_layout(plot_bgcolor='rgba(36,37,45,255)',paper_bgcolor='rgba(36,37,45,255)',
-                    font_color="white",
-                    title_font_color="white",
-                    legend_title_font_color="white",
+    fig.update_layout(plot_bgcolor='white',paper_bgcolor='white',
+                    font_color="black",
+                    title_font_color="black",
+                    legend_title_font_color="black",
                     margin=dict(t=0.2, b=0.2, l=0.2, r=0.2))
     fig.show()
     div = plotly.offline.plot(fig, include_plotlyjs=False, output_type='div', config={'displayModeBar': False})
     
     return div
-def generate_bar(df, x_col, y_col_s, title, log=False):
+def generate_bar(df, x_col, y_col_s, title, colors=None):
+    df['category'] = [str(i) for i in df.index] 
     fig = px.bar(df, x=df.columns[x_col], y=df.columns[y_col_s:],
-             barmode="overlay",log_y=log, title=title)
+            color = 'category',
+            color_discrete_sequence=colors,
+             title=title)
     fig.update_layout(
-        plot_bgcolor='rgba(36,37,45,255)',
-        paper_bgcolor='rgba(36,37,45,255)',
-        font_color="white",
-        title_font_color="white",
-        legend_title_font_color="white",
+        plot_bgcolor='white',
+        paper_bgcolor='white',
+        font_color="black",
+        title_font_color="black",
+        legend_title_font_color="black",
     )
     fig.update_xaxes(
         ticks='inside',
-        gridcolor='#39353d'
+        gridcolor='white'
     )  
     fig.update_yaxes(
         ticks='inside',
         showline=True,
         linecolor='white',
-        gridcolor='#39353d'
+        gridcolor='white'
     )
     fig.update_traces(
         marker_line_width = 0,
+        
     )
+    
     fig.show()
     div = plotly.offline.plot(fig, include_plotlyjs=False, output_type='div', config={'displayModeBar': False})
     return div

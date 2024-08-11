@@ -45,10 +45,12 @@ df_Q1_2 = pd.DataFrame({
   "# of Preference Chosen" : df2_values
 })
 
-generate_pie(df_Q1_1, "First Preference Chosen for Each Option")
+colors = ["rgba(205,235,204,255)", "rgba(204, 230, 235, 1)","rgba(235, 209, 204, 1)"]
 
-generate_pie(df_Q1_2, "Last Preference Chosen for Each Option")
+generate_pie(df_Q1_1, "First Preference Chosen for Each Option", colors)
 
-generate_bar(df_Q1_1, 0,1, "First Preference Chosen for Each Option")
+#generate_pie(df_Q1_2, "Last Preference Chosen for Each Option")
 
-generate_bar(df_Q1_2, 0,1, "Last Preference Chosen for Each Option")
+generate_bar(df_Q1_1, 0,1, "First Preference Chosen for Each Option", colors)
+
+#generate_bar(df_Q1_2, 0,1, "Last Preference Chosen for Each Option")
