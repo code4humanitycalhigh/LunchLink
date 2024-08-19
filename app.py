@@ -23,7 +23,7 @@ def calendar():
 
 @app.route('/analytics', methods=['GET'])
 def analytics():
-    return render_template('analytics.html', pie=pie1, bar=bar1)
+    return render_template('analytics.html', pie1=pie1, pie2=pie2, bar2 = bar2, bar=bar1)
 
 if __name__ == '__main__':
     app.run(debug=True)
