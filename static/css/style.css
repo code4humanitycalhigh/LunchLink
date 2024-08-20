@@ -239,3 +239,46 @@ td, th {
 tr:nth-child(even) {
   background-color: #dddddd;
 }
+
+/* Analytics stuff */
+.analytics-header{
+  width: 100vw;
+  text-align: center;
+
+  h1{
+    color: black;
+    font-size: 60px;
+  }
+}
+
+.charts{
+  display: flex;
+  flex-direction: row;
+  width: 100vw;
+}
+
+.pies{
+  width: 30vw;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+#pie{
+  margin-top: 2.5%;
+  height: 50%;
+  width: 100%;
+}
+
+.bars{
+  width: 70vw;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+}
+
+#bar{
+  margin-left: 1%;
+  height: 100%;
+  width: 49%;
+}
