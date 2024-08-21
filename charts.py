@@ -49,8 +49,8 @@ colors = ["rgba(205,235,204,255)", "rgba(204, 230, 235, 1)","rgba(235, 209, 204,
 
 pie1=generate_pie(df_Q1_1, "First Preference Chosen for Each Option", colors)
 
-pie2=generate_pie(df_Q1_2, "Last Preference Chosen for Each Option")
+pie2=generate_pie(df_Q1_2, "Last Preference Chosen for Each Option", colors)
 
 bar1=generate_bar(df_Q1_1, 0,1, "First Preference Chosen for Each Option", colors)
 
-bar2=generate_bar(df_Q1_2, 0,1, "Last Preference Chosen for Each Option")
+bar2=generate_bar(df_Q1_2, 0,1, "Last Preference Chosen for Each Option", colors)

@@ -14,7 +14,7 @@ def generate_pie(df,title, colors = None):
             titlefont={'size':100},
             values=df["# of Preference Chosen"],
             hole=0.5,
-            opacity = 0.5,
+            #opacity = 0.5,
             
             ) 
         ))
@@ -25,7 +25,7 @@ def generate_pie(df,title, colors = None):
             marker=dict(colors=colors, 
                         line=dict(color='white', width=5))
     )
-    fig.update_layout(plot_bgcolor='#fafafa',paper_bgcolor='#fafafa',
+    fig.update_layout(plot_bgcolor='rgba(250,250,250,0)',paper_bgcolor='rgba(250,250,250,0)',
                     font_color="black",
                     title_font_color="black",
                     legend_title_font_color="black",
@@ -39,11 +39,11 @@ def generate_bar(df, x_col, y_col_s, title, colors=None):
     fig = px.bar(df, x=df.columns[x_col], y=df.columns[y_col_s:],
             color = 'category',
             color_discrete_sequence=colors,
-            barmode="overlay",
+            #barmode="overlay",
              title=title)
     fig.update_layout(
-        plot_bgcolor='#fafafa',
-        paper_bgcolor='#fafafa',
+        plot_bgcolor='rgba(250,250,250,0)',
+        paper_bgcolor='rgba(250,250,250,0)',
         font_color="black",
         title_font_color="black",
         legend_title_font_color="black",
