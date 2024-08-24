@@ -6,7 +6,7 @@ from datetime import datetime, timedelta
 
 
 
-df = pd.read_csv("form.csv")
+df = pd.read_csv("data/form.csv")
 time = datetime.now()
 
 def get_random():
@@ -33,5 +33,5 @@ for i in range(100): # generates 100 rows
   time += timedelta(minutes = 1)
 
 
-df.to_csv("form.csv",index=None)
+df.to_csv("data/form.csv",index=None)
 

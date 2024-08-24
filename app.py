@@ -10,7 +10,7 @@ app = Flask(__name__)
 @app.route('/', methods=['GET'])
 def homepage():
     upload_sheets_data() #updates form.csv
-    df=pd.read_csv("form.csv")
+    df=pd.read_csv("data/form.csv")
     return render_template('home.html',column_names=df.columns.values, row_data=list(df.values.tolist()),zip=zip)
 
 @app.route('/log', methods=['GET'])

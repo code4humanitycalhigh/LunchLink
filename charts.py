@@ -8,7 +8,7 @@ import numpy as np
 from charts_class import generate_bar, generate_pie
 
 #counting
-df = pd.read_csv("form.csv")
+df = pd.read_csv("data/form.csv")
 q1_1 = df['Q1[1]'].tolist()
 q1_2 = df['Q1[2]'].tolist()
 q1_3 = df['Q1[3]'].tolist()

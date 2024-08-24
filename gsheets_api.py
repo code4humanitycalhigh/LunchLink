@@ -52,7 +52,7 @@ def upload_sheets_data():
   #sorting
   df = df.sort_values(by='Timestamp')
 
-  df.to_csv("form.csv",index=None)
+  df.to_csv("data/form.csv",index=None)
 
   '''
   Legend:
