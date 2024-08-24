@@ -26,4 +26,6 @@ def analytics():
     return render_template('analytics.html', pie1=pie1, pie2=pie2, bar1 = bar1, bar2=bar2)
 
 if __name__ == '__main__':
-    app.run(port=8000)
+    from waitress import serve
+    serve(app, host="0.0.0.0", port=8000)
+    
