@@ -5,6 +5,8 @@ import pandas as pd
 import datetime
 import time
 import os
+from dotenv import load_dotenv
+load_dotenv()
 
 
 
@@ -12,11 +14,11 @@ def get_credentials():
     
 
     scopes = ["https://www.googleapis.com/auth/spreadsheets.readonly"]
-    GOOGLE_PRIVATE_KEY = os.environ['GOOGLE_PRIVATE_KEY']
+    GOOGLE_PRIVATE_KEY = os.getenv('GOOGLE_PRIVATE_KEY')
     
     account_info = {
       "private_key": GOOGLE_PRIVATE_KEY,
-      "client_email": os.environ['GOOGLE_CLIENT_EMAIL'],
+      "client_email": os.getenv('GOOGLE_CLIENT_EMAIL'),
       "token_uri": "https://accounts.google.com/o/oauth2/token",
     }
     
@@ -34,8 +36,8 @@ def get_service(service_name='sheets', api_version='v4'):
 
 def upload_sheets_data():
   service = get_service()
-  spreadsheet_id = os.environ['GOOGLE_SPREADSHEET_ID']
-  range_name = os.environ['GOOGLE_CELL_RANGE']
+  spreadsheet_id = os.getenv('GOOGLE_SPREADSHEET_ID')
+  range_name = os.getenv('GOOGLE_CELL_RANGE')
 
   result = service.spreadsheets().values().get(
     spreadsheetId=spreadsheet_id, range=range_name).execute()
