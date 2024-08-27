@@ -27,5 +27,5 @@ def analytics():
 
 if __name__ == '__main__':
     
-    app.run(port=8000)
+    app.run(host="localhost", port=8080, debug=True)
     
