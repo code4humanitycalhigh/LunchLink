@@ -1,0 +1,18 @@
+runtime: python311
+
+instance_class: F2
+
+includes:
+  - env_variables.yaml
+  
+handlers:
+# Matches requests to /images/... to files in static/images/...
+- url: /images
+  static_dir: static/images
+
+- url: /.*
+  secure: always
+  redirect_http_response_code: 301
+  script: auto
+
+entrypoint: gunicorn -b :$PORT app:app

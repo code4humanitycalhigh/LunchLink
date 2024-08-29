@@ -3,16 +3,28 @@ from google.oauth2 import service_account
 import json
 import pandas as pd
 import datetime
+from google.cloud import storage
+import google
 import time
 import os
+import logging
 from dotenv import load_dotenv
 load_dotenv()
 
 
+def googleauth_filter(record):
+    # https://github.com/googleapis/google-auth-library-python/issues/927
+    if record.exc_info and isinstance(record.exc_info[1], ValueError) \
+        and traceback.extract_tb(record.exc_info[2])[-1].name == 'from_bytes':
+        record.levelno = logging.INFO
+        record.levelname = logging.getLevelName(logging.INFO)
+        record.msg += ': ' + str(record.exc_info[1])
+        record.exc_info = None
+    return True
+logging.getLogger('grpc._plugin_wrapping').addFilter(googleauth_filter)
+
 
 def get_credentials():
-    
-
     scopes = ["https://www.googleapis.com/auth/spreadsheets.readonly"]
     GOOGLE_PRIVATE_KEY = os.getenv('GOOGLE_PRIVATE_KEY')
     
@@ -21,8 +33,12 @@ def get_credentials():
       "client_email": os.getenv('GOOGLE_CLIENT_EMAIL'),
       "token_uri": "https://accounts.google.com/o/oauth2/token",
     }
+
+    
     
     credentials = service_account.Credentials.from_service_account_info(account_info, scopes=scopes)
+    
+    
     return credentials
 
 
@@ -54,7 +70,13 @@ def upload_sheets_data():
   #sorting
   df = df.sort_values(by='Timestamp')
 
-  df.to_csv("data/form.csv",index=None)
+  
+
+  client = storage.Client()
+  bucket = client.get_bucket('csv_files_deployment')
+  bucket.blob('data/form.csv').upload_from_string(df.to_csv(), 'text/csv')
+  
+  
 
   '''
   Legend:
