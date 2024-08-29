@@ -68,14 +68,15 @@ def upload_sheets_data():
                                        "Q5[12]","Q5[13]","Q5[14]",
                                        "Feedback"])
   #sorting
-  df = df.sort_values(by='Timestamp')
+  """ df = df.sort_values(by='Timestamp')
 
   
 
   client = storage.Client()
   bucket = client.get_bucket('csv_files_deployment')
-  bucket.blob('data/form.csv').upload_from_string(df.to_csv(), 'text/csv')
+  bucket.blob('data/form.csv').upload_from_string(df.to_csv(), 'text/csv') """
   
+  df.to_csv("data/form.csv", index=None)
   
 
   '''
