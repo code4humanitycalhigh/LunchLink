@@ -2,13 +2,14 @@ import plotly
 import plotly.express as px
 import plotly.graph_objs as go
 import pandas as pd
+from gsheets_api import get_sheets_data
 import plotly.figure_factory as ff
 import plotly.graph_objects as go
 import numpy as np
 from charts_class import generate_bar, generate_pie
 
 #counting
-df = pd.read_csv("data/form.csv")
+df = get_sheets_data()
 q1_1 = df['Q1[1]'].tolist()
 q1_2 = df['Q1[2]'].tolist()
 q1_3 = df['Q1[3]'].tolist()

@@ -1,5 +1,5 @@
 from flask import Flask, render_template
-from gsheets_api import upload_sheets_data
+from gsheets_api import get_sheets_data
 import pandas as pd
 from charts import pie1, pie2, bar1, bar2
 
@@ -10,8 +10,8 @@ app = Flask(__name__)
 
 @app.route('/', methods=['GET'])
 def homepage():
-    upload_sheets_data() #updates form.csv
-    df=pd.read_csv("data/form.csv")
+     #updates form.csv
+    df=get_sheets_data()
     return render_template('home.html',column_names=df.columns.values, row_data=list(df.values.tolist()),zip=zip)
 
 @app.route('/log', methods=['GET'])
