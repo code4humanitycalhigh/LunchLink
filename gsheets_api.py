@@ -95,6 +95,5 @@ def get_sheets_data():
   14 : Fried Chicken
   '''
   
-df=get_sheets_data()
-df.to_csv("data/form.csv", index=None)
+
 
