@@ -2,6 +2,7 @@ import googleapiclient.discovery
 from google.oauth2 import service_account
 import json
 import pandas as pd
+pd.set_option('display.max_columns', None)
 import datetime
 from google.cloud import storage
 import google
@@ -61,14 +62,15 @@ def get_sheets_data():
   #print(values)
   columns=values.pop(0)
   df = pd.DataFrame(values, columns = ["Timestamp",
-                                       "Q1[1]","Q1[2]","Q1[3]",
-                                       "Q2[4]","Q2[5]","Q2[6]",
-                                       "Q3[7]","Q3[8]","Q3[3]",
-                                       "Q4[9]","Q4[10]","Q4[11]",
-                                       "Q5[12]","Q5[13]","Q5[14]",
-                                       "Feedback"])
+                                       "O1", "O2", "O3", "O4", "O5", 
+                                       "O6", "O7", "O8", "O9", "O10", 
+                                       "O11", "O12", "O13", "O14", "O15", 
+                                       "O16", "O17", "O18", "O19", "O20", 
+                                       "O21", "O22", "O23", "O24", "O25",
+                                       "Dietary Restrictions",
+                                       "Feedback"]) # O for Option
   #sorting
-  df = df.sort_values(by='Timestamp')
+  #df = df.sort_values(by='Timestamp')
 
   
 
@@ -93,5 +95,6 @@ def get_sheets_data():
   14 : Fried Chicken
   '''
   
-
+df=get_sheets_data()
+df.to_csv("data/form.csv", index=None)
 

@@ -2,36 +2,39 @@ import pandas as pd
 import time, datetime
 import random
 from datetime import datetime, timedelta
+import random
 
 
 
-
-df = pd.read_csv("tmp/form.csv")
+df = pd.read_csv("data/test_data.csv")
 time = datetime.now()
 
-def get_random():
-  #totally random
-  option_list=["1st","2nd","3rd"]
-  if range(1,11)[random.randint(0,9)] % 2==0:
-    return "3rd"
-  if range(1,11)[random.randint(0,9)] % 3==0:
-    return "1st"
-  if range(1,11)[random.randint(0,9)] % 6==0:
-    return "2nd"
+def get_random(o):
+  #totally random (weighted)
+  lst=[1,2,3,4,5,""]
+  if o in [1,2,3,6]:
+    return random.choices(lst, weights=(10, 20, 40, 180, 200,60), k=1)[0]
+  if o in [5,8,15,20,11,12]:
+    return random.choices(lst, weights=(200,100,60,80,10,200), k=1)[0]
+  else:
+    return round(random.randint(1,5))
+
+  
 
 for i in range(100): # generates 100 rows
   date_time = time.strftime("%#m/%#d/%Y %H:%M:%S")
   
   lst=[date_time]
 
-  for i in range(15):
-    lst.append(get_random())
-
+  for i in range(1,26):
+    lst.append(get_random(i))
+  lst.append("dietary_restriction")
   lst.append("feedback_example")
   
   df.loc[len(df)] = lst
   time += timedelta(minutes = 1)
 
 
-df.to_csv("data/form.csv",index=None)
+df.to_csv("data/test_data.csv",index=None)
+
 
