@@ -89,11 +89,29 @@ const generateCalendar = (month, year) => {
     }
     calendar_days.appendChild(day);
     if (i >= first_day.getDay()) {
-        let z = i - first_day.getDay() + 1;
-        document.querySelector('.d'+String(z)).addEventListener('click', function() {
-            console.log(String(z)+' was clicked');
+        let d = i - first_day.getDay() + 1;
+        let m = first_day.getMonth()+1;
+        let y = first_day.getFullYear();
+        document.querySelector('.d'+String(d)).addEventListener('click', function() {
+            console.log(String(d)+' was clicked');
+            //console.log("pre-ajax");
             modal.style.display = 'inline-block';
-            text.innerHTML = 'Day: ' + String(z);
+            //text.innerHTML = ' Day: ' + d + ' Month: ' + m + ' Year: ' + y;
+            $.ajax({ 
+              url: '/calendar_retrieval', 
+              type: 'POST', 
+              contentType: 'application/json', 
+              data: JSON.stringify({ 'day': d, 'month' : m, 'year':y}), 
+              success: function(response) { 
+                  //document.getElementById('output').innerHTML = response.result; 
+                  text.innerHTML = 'Value: ' + response.result;
+              }, 
+              error: function(error) { 
+                  console.log(error);
+              } 
+            }); 
+            //console.log("post-ajax");
+            //text.innerHTML = 'Day: ' + String(z);
         });
         modalClose.addEventListener('click', function(){
             modal.style.display = 'none';

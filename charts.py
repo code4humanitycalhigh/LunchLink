@@ -37,7 +37,7 @@ df_bar=pd.DataFrame(data={
   "Rating" : [1,2,3,4,5]
 
 })
-print(df_charts)
+#print(df_charts)
 
 
 
