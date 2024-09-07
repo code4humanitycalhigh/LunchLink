@@ -13,7 +13,7 @@ def get_random(o):
   #totally random (weighted)
   lst=[1,2,3,4,5,""]
   if o in [1,2,3,6]:
-    return random.choices(lst, weights=(10, 20, 40, 180, 200,60), k=1)[0]
+    return random.choices(lst, weights=(10, 20, 40, 180, 200,100), k=1)[0]
   if o in [5,8,15,20,11,12]:
     return random.choices(lst, weights=(200,100,60,80,10,200), k=1)[0]
   else:

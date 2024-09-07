@@ -72,6 +72,15 @@ const generateCalendar = (month, year) => {
     let day = document.createElement('div');
     let dataSide = document.querySelector('.data-side');
     let text = dataSide.querySelector('.date');
+    let opt1 = dataSide.querySelector('.option-1');
+    let opt2 = dataSide.querySelector('.option-2');
+    let avg1 = dataSide.querySelector('.avg-1');
+    let avg2 = dataSide.querySelector('.avg-2');
+    let per1 = dataSide.querySelector('.per-1');
+    let per2 = dataSide.querySelector('.per-2');
+    let total1 = dataSide.querySelector('.total-1');
+    let total2 = dataSide.querySelector('.total-2');
+    let bar1=dataSide.querySelector('.bar-chart')
 
     if (i >= first_day.getDay()) {
       let z = i - first_day.getDay() + 1;
@@ -114,11 +123,34 @@ const generateCalendar = (month, year) => {
                   data: JSON.stringify({ 'day': d, 'month' : m, 'year':y}), 
                   success: function(response) { 
                       //document.getElementById('output').innerHTML = response.result; 
-                      text.innerHTML = `names: ${response.option_list}   
+                      console.log(`names: ${response.option_list}   
                                         avgs: ${response.avg_list}
                                         total_ratings: ${response.total_ratings}
+                                        percenteages: ${response.percentages}
+                                        `);
 
-                                        `;
+                      //checks which value is bigger, then assigns that index to the first
+                      avg1.innerHTML = response.avg_list[0] >= response.avg_list[1] 
+                                    ? response.avg_list[0] : response.avg_list[1];
+                      avg2.innerHTML = response.avg_list[0] < response.avg_list[1] 
+                                    ? response.avg_list[0] : response.avg_list[1];
+                      opt1.innerHTML = response.avg_list[0] >= response.avg_list[1] 
+                                    ? response.option_list[0] : response.option_list[1];
+                      opt2.innerHTML = response.avg_list[0] < response.avg_list[1] 
+                                    ? response.option_list[0] : response.option_list[1];
+                      total1.innerHTML = response.avg_list[0] >= response.avg_list[1] 
+                                    ? response.total_ratings[0] : response.total_ratings[1];
+                      total2.innerHTML = response.avg_list[0] < response.avg_list[1] 
+                                    ? response.total_ratings[0] : response.total_ratings[1];
+                      per1.innerHTML = response.avg_list[0] >= response.avg_list[1] 
+                                    ? response.percentages[0] : response.percentages[1];
+                      per2.innerHTML = response.avg_list[0] < response.avg_list[1] 
+                                    ? response.percentages[0] : response.percentages[1];
+                      bar1.innerHTML=response.bar;
+                      //console.log(response.bar)
+                      
+                      
+
                   }, 
                   error: function(error) { 
                       console.log(error);

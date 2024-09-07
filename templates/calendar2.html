@@ -32,12 +32,12 @@
         <div class="container">
             <div class="calendar">
               <div class="calendar-header">
-                <span class="month-picker" id="month-picker"> May </span>
+                <span class="month-picker" id="month-picker"></span>
                 <div class="year-picker" id="year-picker">
                   <span class="year-change" id="pre-year">
                     <pre><</pre>
                   </span>
-                  <span id="year">2020 </span>
+                  <span id="year"></span>
                   <span class="year-change" id="next-year">
                     <pre>></pre>
                   </span>
@@ -62,8 +62,8 @@
               <div class="date-time-formate">
                 <div class="day-text-formate">TODAY</div>
                 <div class="date-time-value">
-                  <div class="time-formate">01:41:20</div>
-                  <div class="date-formate">03 - march - 2022</div>
+                  <div class="time-formate"></div>
+                  <div class="date-formate"></div>
                 </div>
               </div>
               <div class="month-list"></div>
@@ -72,39 +72,50 @@
           <div id="myModal" class="modal">
             <div class="modal-content">
               <span class="close">&times;</span>
-              <p class="text">Hello World</p>
+              <p class="text"></p>
             </div>
           </div>
           <div class="data-side">
             <h2 class="date">September 1 2024</h2>
             <div class="data-options">
-              <div class="option-1">
-                Option 1: Cheese Pizza
+              Option 1: <div class = "option-1">
+                Cheese Pizza
               </div>
-              <div class="option-2">
-                Option 2: Chicken Sandwich
+              Option 2: <div class = "option-2">
+                Chicken Sandwich
               </div>
             </div>
             <div class="stat-header">Average Rating</div>
             <div class="data-options">
               <div class="stat-1">
                 <!-- Add the class red or green to "colored" depending on if the rating is good or bad -->
-                <span class="colored">3.98</span>/5
+                <span style="color:green" class="avg-1"></span>/5
               </div>
               <div class="stat-1">
                 <!-- Add the class red or green to "colored" depending on if the rating is good or bad -->
-                <span class="colored">1.22</span>/5
+                <span style="color:red" class = "avg-2"></span>/5
               </div>
             </div>
             <div class="stat-header">Relative Proportion</div>
             <div class="data-options">
               <div class="stat-1">
                 <!-- Add the class red or green to "colored" depending on if the rating is good or bad -->
-                <span class="colored">76%</span>
+                <span style="color:green" class = "per-1"></span>
               </div>
               <div class="stat-1">
                 <!-- Add the class red or green to "colored" depending on if the rating is good or bad -->
-                <span class="colored">23%</span>
+                <span style="color:red" class = "per-2"></span>
+              </div>
+            </div>
+            <div class="stat-header"># of Ratings</div>
+            <div class="data-options">
+              <div class="stat-1">
+                <!-- Add the class red or green to "colored" depending on if the rating is good or bad -->
+                <span style="color:green" class = "total-1"></span>
+              </div>
+              <div class="stat-1">
+                <!-- Add the class red or green to "colored" depending on if the rating is good or bad -->
+                <span style="color:red" class = "total-2"></span>
               </div>
             </div>
             <div class="bar-chart"></div>

@@ -1,8 +1,8 @@
 from flask import Flask, render_template, request, jsonify
-from gsheets_api import get_sheets_data, get_menu
+from gsheets_api import get_sheets_data
 import pandas as pd
 #from charts import df_charts
-from charts_class import side_by_side_bar, option_data
+from charts_class import side_by_side_bar, option_data, compare_two, get_menu
 #from charts import pie1, pie2, bar1, bar2
 
 app = Flask(__name__)
@@ -39,11 +39,15 @@ def calendar_retrieval():
 
     [option1,option2]=get_menu(day,month,year) #charts_class.py
     avg_list, ratings_list=option_data(option1,option2) #charts_class.py
+    avg_list=[i for i in avg_list]
     bar = side_by_side_bar(option1, option2)
-
+    percentage_list=[str(round(i*100))+"%" for i in compare_two(avg_list)]
+    [name1,name2]=get_menu(day,month,year, True)
 
     
-    return jsonify(option_list=[option1,option2], avg_list=avg_list, total_ratings=ratings_list,bar=bar) # return the result to JavaScript
+    return jsonify(option_list=[name1,name2], avg_list=avg_list, 
+                   total_ratings=ratings_list, percentages=percentage_list,
+                   bar=bar) # return the result to JavaScript
 
 if __name__ == '__main__':
     

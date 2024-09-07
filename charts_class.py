@@ -133,7 +133,11 @@ def get_menu(day, month, year,names=False):
     str_format=str(month)+"/"+str(day)+"/"+str(year)
     
     #returns list len 2
+
+    print(str_format)
     items=df_menu.loc[df_menu['Date'] == str_format, ['Item1','Item2']].values.tolist()[0]
+    
+       
     if names:
       try:
         return 'No options listed' if len(items) == 0 else items
@@ -152,10 +156,12 @@ def get_menu(day, month, year,names=False):
        
     #return df_menu.loc[df_menu['Date'] == str_format, ['Item1','Item2']].values.tolist()[0]
 
-def compare_two(avg1, avg2):
+def compare_two(avg_list):
+  avg1=avg_list[0]
+  avg2=avg_list[1]
   percentage1=avg1/(avg1+avg2)
   percentage2=avg2/(avg1+avg2)
-  return percentage1,percentage2
+  return [percentage1,percentage2]
 
 
 #counting
@@ -189,4 +195,4 @@ def option_data(O1, O2):
   return avg_list, total_ratings
 
 
-#bar = side_by_side_bar(option1, option2)
+#print(side_by_side_bar('O1','O2'))
