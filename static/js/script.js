@@ -92,30 +92,48 @@ const generateCalendar = (month, year) => {
         let d = i - first_day.getDay() + 1;
         let m = first_day.getMonth()+1;
         let y = first_day.getFullYear();
+        const weekdayList = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
+        let weekday = new Date(`${m} ${d} ${y}`);
+        let wd = weekdayList[weekday.getDay()];
+        
+
+  
         document.querySelector('.d'+String(d)).addEventListener('click', function() {
-            console.log(String(d)+' was clicked');
-            //console.log("pre-ajax");
+
             modal.style.display = 'inline-block';
-            //text.innerHTML = ' Day: ' + d + ' Month: ' + m + ' Year: ' + y;
-            $.ajax({ 
-              url: '/calendar_retrieval', 
-              type: 'POST', 
-              contentType: 'application/json', 
-              data: JSON.stringify({ 'day': d, 'month' : m, 'year':y}), 
-              success: function(response) { 
-                  //document.getElementById('output').innerHTML = response.result; 
-                  text.innerHTML = 'Value: ' + response.result;
-              }, 
-              error: function(error) { 
-                  console.log(error);
-              } 
-            }); 
-            //console.log("post-ajax");
-            //text.innerHTML = 'Day: ' + String(z);
+
+            console.log(`month: ${m}, day: ${d}, year: ${y}`);
+            if (wd=="Sunday"||wd=="Saturday"){
+                
+                text.innerHTML="No menu for today, it's the weekend!";
+            } else {
+                
+                $.ajax({ 
+                  url: '/calendar_retrieval', 
+                  type: 'POST', 
+                  contentType: 'application/json', 
+                  data: JSON.stringify({ 'day': d, 'month' : m, 'year':y}), 
+                  success: function(response) { 
+                      //document.getElementById('output').innerHTML = response.result; 
+                      text.innerHTML = `names: ${response.option_list}   
+                                        avgs: ${response.avg_list}
+                                        total_ratings: ${response.total_ratings}
+
+                                        `;
+                  }, 
+                  error: function(error) { 
+                      console.log(error);
+                  } 
+                });
+            }
+            
+        
+             
+            
         });
         modalClose.addEventListener('click', function(){
             modal.style.display = 'none';
-            text.innerHTML = 'No data to show';
+            
         });
     }
   }

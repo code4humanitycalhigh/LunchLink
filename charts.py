@@ -8,36 +8,10 @@ import plotly.graph_objects as go
 import numpy as np
 from charts_class import generate_bar, generate_pie
 
-def compare_two(avg1, avg2):
-  percentage1=avg1/(avg1+avg2)
-  percentage2=avg2/(avg1+avg2)
-  return percentage1,percentage2
 
 
-#counting
-df = pd.read_csv("data/test_data.csv")#get_sheets_data()
-column_list=df.columns.values.tolist()
-avg_values=[]
-total_values=[]
-#print(column_list)
-for i in column_list[1:26]:
-  value_list=df[i].values.tolist()
-  avg=np.nanmean(value_list,axis=0)
-  column_name="avg"+i[1:]
-  avg_values.append(round(avg,2))
-  total_values.append(np.count_nonzero(~np.isnan(value_list)))
 
-df_charts=pd.DataFrame(data={
-  "Name of Option": column_list[1:26],
-  "Average Rating out of 5": avg_values,
-  "# of Ratings": total_values,
-})
 
-df_bar=pd.DataFrame(data={
-  "Rating" : [1,2,3,4,5]
-
-})
-#print(df_charts)
 
 
 
