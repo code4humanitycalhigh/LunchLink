@@ -70,9 +70,8 @@ const generateCalendar = (month, year) => {
   for (let i = 0; i <= days_of_month[month] + first_day.getDay() - 1; i++) {
 
     let day = document.createElement('div');
-    let modal = document.querySelector('.modal');
-    let modalClose = modal.querySelector('.close');
-    let text = modal.querySelector('.text');
+    let dataSide = document.querySelector('.data-side');
+    let text = dataSide.querySelector('.date');
 
     if (i >= first_day.getDay()) {
       let z = i - first_day.getDay() + 1;
@@ -100,7 +99,7 @@ const generateCalendar = (month, year) => {
   
         document.querySelector('.d'+String(d)).addEventListener('click', function() {
 
-            modal.style.display = 'inline-block';
+            dataSide.style.display = 'flex';
 
             console.log(`month: ${m}, day: ${d}, year: ${y}`);
             if (wd=="Sunday"||wd=="Saturday"){
@@ -131,10 +130,7 @@ const generateCalendar = (month, year) => {
              
             
         });
-        modalClose.addEventListener('click', function(){
-            modal.style.display = 'none';
-            
-        });
+        
     }
   }
 };

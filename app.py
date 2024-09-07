@@ -22,7 +22,7 @@ def log():
 
 @app.route('/calendar', methods=['GET'])
 def calendar():
-    return render_template('calendar.html')
+    return render_template('calendar2.html')
 
 @app.route('/analytics', methods=['GET'])
 def analytics():
@@ -36,7 +36,7 @@ def calendar_retrieval():
     day=data['day']
     month=data['month']
     year=data['year']
-    
+
     [option1,option2]=get_menu(day,month,year) #charts_class.py
     avg_list, ratings_list=option_data(option1,option2) #charts_class.py
     bar = side_by_side_bar(option1, option2)
