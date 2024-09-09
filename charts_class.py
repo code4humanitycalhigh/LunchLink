@@ -124,7 +124,7 @@ def side_by_side_bar(O1,O2): #O1 and O2 do NOT represent the columns O1 and O2
     )
     #fig.show()
     div = plotly.offline.plot(fig, include_plotlyjs=False, output_type='div', config={'displayModeBar': False})
-    return div
+    return fig
 
 #side_by_side_bar("O1","O5") #pizza and hot dog
 

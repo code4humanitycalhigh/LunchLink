@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request, jsonify
 from gsheets_api import get_sheets_data
 import pandas as pd
+import plotly.express as px
 #from charts import df_charts
 from charts_class import side_by_side_bar, option_data, compare_two, get_menu
 #from charts import pie1, pie2, bar1, bar2
@@ -43,11 +44,33 @@ def calendar_retrieval():
     bar = side_by_side_bar(option1, option2)
     percentage_list=[str(round(i*100))+"%" for i in compare_two(avg_list)]
     [name1,name2]=get_menu(day,month,year, True)
-
+    #print(bar)
     
     return jsonify(option_list=[name1,name2], avg_list=avg_list, 
                    total_ratings=ratings_list, percentages=percentage_list,
-                   bar=bar) # return the result to JavaScript
+                   ) # return the result to JavaScript
+
+@app.route('/bar_retrieval', methods=['GET','POST'])
+def bar_retrieval():
+    
+    data = request.get_json() 
+    
+    
+    day=data['day']
+    month=data['month']
+    year=data['year']
+
+    [option1,option2]=get_menu(day,month,year) #charts_class.py
+    bar = side_by_side_bar(option1, option2)
+    
+    data_canada = px.data.gapminder().query("country == 'Canada'")
+    fig = px.bar(data_canada, x='year', y='pop')
+    #bar.show()
+    return bar.to_json()
+    
+
+
+
 
 if __name__ == '__main__':
     

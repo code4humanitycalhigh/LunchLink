@@ -80,7 +80,7 @@ const generateCalendar = (month, year) => {
     let per2 = dataSide.querySelector('.per-2');
     let total1 = dataSide.querySelector('.total-1');
     let total2 = dataSide.querySelector('.total-2');
-    let bar1=dataSide.querySelector('.bar-chart')
+    let bar1=document.querySelector('.bar-chart')
 
     if (i >= first_day.getDay()) {
       let z = i - first_day.getDay() + 1;
@@ -146,16 +146,30 @@ const generateCalendar = (month, year) => {
                                     ? response.percentages[0] : response.percentages[1];
                       per2.innerHTML = response.avg_list[0] < response.avg_list[1] 
                                     ? response.percentages[0] : response.percentages[1];
-                      bar1.innerHTML=response.bar;
-                      //console.log(response.bar)
                       
-                      
+                      //Plotly.react('external', data, {}); 
+
 
                   }, 
                   error: function(error) { 
                       console.log(error);
                   } 
                 });
+
+                fetch(`/bar_retrieval`, {
+                  method: "POST",
+                  credentials: "include",
+                  body: JSON.stringify({ 'day': d, 'month' : m, 'year':y}),
+                  cache: "no-cache",
+                  headers: new Headers({
+                    "content-type": "application/json"
+                  })})
+                .then(resp => resp.ok && resp.json())
+                .then(data => {
+                    if (!data) return;
+                    console.log(data);
+                    Plotly.react('external', data, {}); 
+            });
             }
             
         
@@ -235,5 +249,6 @@ setInterval(() => {
     )}: ${`${timer.getSeconds()}`.padStart(2, '0')}`;
   todayShowTime.textContent = formateTimer;
 }, 1000);
+
 
 
