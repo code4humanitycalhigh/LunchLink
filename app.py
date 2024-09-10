@@ -3,7 +3,7 @@ from gsheets_api import get_sheets_data
 import pandas as pd
 import plotly.express as px
 #from charts import df_charts
-from charts_class import side_by_side_bar, option_data, compare_two, get_menu
+from charts_class import side_by_side_bar, option_data, compare_two, get_menu, get_survey_data
 #from charts import pie1, pie2, bar1, bar2
 
 app = Flask(__name__)
@@ -15,7 +15,9 @@ app = Flask(__name__)
 def homepage():
      #updates form.csv
     df=get_sheets_data()
-    return render_template('home.html',column_names=df.columns.values, row_data=list(df.values.tolist()),zip=zip)
+    week_comp, total_comp, total_rat, api_calls = get_survey_data()
+
+    return render_template('home.html', wc=week_comp, tc=total_comp, tr=total_rat, ac=api_calls)
 
 @app.route('/log', methods=['GET'])
 def log():

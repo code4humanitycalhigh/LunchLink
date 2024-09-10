@@ -2,9 +2,12 @@ import plotly
 import plotly.express as px
 import plotly.graph_objs as go
 import pandas as pd
+from datetime import date
+from datetime import timedelta
 import plotly.figure_factory as ff
 import plotly.graph_objects as go
 import numpy as np
+
 def generate_pie(df,title, colors = None):
     fig=(go.Figure(
         data=go.Pie(
@@ -196,3 +199,21 @@ def option_data(O1, O2):
 
 
 #print(side_by_side_bar('O1','O2'))
+
+def get_survey_data():
+    df=pd.read_csv("data/test_data.csv")
+    total_completions=[i.split(" ")[0] for i in df.Timestamp.values.tolist()]
+    today = date.today() # or you can do today = date.today() for today's date
+    this_week=[j.strftime('%#m/%#d/%Y') for j in [today - timedelta(days=i) for i in range(0,7)]]
+    completions_this_week=[i for i in total_completions if i in this_week]
+   
+    total_ratings = df.count().sum()
+
+    # returns all int
+    return len(completions_this_week), len(total_completions), total_ratings.item(), 0 # 0 calls to nutrislice
+
+    
+
+
+
+#print(get_survey_data())
