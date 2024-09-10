@@ -80,6 +80,7 @@ const generateCalendar = (month, year) => {
     let per2 = dataSide.querySelector('.per-2');
     let total1 = dataSide.querySelector('.total-1');
     let total2 = dataSide.querySelector('.total-2');
+    let noData = document.querySelector(".no-data-shown");
     let bar1=document.querySelector('.bar-chart')
     
 
@@ -114,11 +115,13 @@ const generateCalendar = (month, year) => {
             console.log(`month: ${m}, day: ${d}, year: ${y}`);
             if (wd=="Sunday"||wd=="Saturday"){
                 //implement weekend stuff
-                dataSide.style.visibility = 'hidden';  
+                dataSide.style.visibility = 'hidden'; 
+                noData.style.display = 'flex';
                 
             } else {
                 
                 dataSide.style.visibility = 'visible';  
+                noData.style.display = 'none';
                 $.ajax({ 
                   url: '/calendar_retrieval', 
                   type: 'POST', 

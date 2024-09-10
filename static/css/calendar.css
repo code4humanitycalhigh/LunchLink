@@ -4,13 +4,13 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 30vw;
+  width: 50vw;
 }
 
 .calendar {
-  height: 30rem;
+  height: 80vh;
   
-  width: max-content;
+  width: 90%;
   background-color: white;
   border-radius: 25px;
   overflow: hidden;
@@ -40,6 +40,7 @@
   display: grid;
   grid-template-columns: repeat(7, 1fr);
   font-weight: 600;
+  place-items: left;
   cursor: pointer;
   color: rgb(104, 104, 104);
 }
@@ -52,7 +53,7 @@
 
 .calendar-week-days div {
   display: grid;
-  place-items: center;
+  place-items: left;
   color: rgb(145, 209, 145);
   height: 50px;
 }
@@ -342,15 +343,23 @@
 }
 
 /* Side data stuff */
+.side{
+  width: 50vw;
+  max-height: 90vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .data-side{
-  width: 70vw;
+  width: 80%;
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
   display: none;
+  max-height: 90vh;
 }
-
-
 
 .data-side .date{
   margin-bottom: 5vh;
@@ -367,12 +376,33 @@
   font-size: 20px;
 }
 
+.option-1-container, .option-2-container{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .stat-header{
   font-size: 20px;
 }
 
 .bar-chart{
   margin-top: 20px;
-  width: 60%;
+  width: 100%;
   height: 1000px;
+}
+
+/* Default no data shown text */
+.no-data-shown{
+  /* display: none; */
+  display: flex;
+  position: absolute;
+  align-items: center;
+  justify-content: center;
+  top: 50%;
+  left: 67%;
+}
+
+.stat-1{
+  font-size: 30px;
 }
