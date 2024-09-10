@@ -3,7 +3,8 @@ from gsheets_api import get_sheets_data
 import pandas as pd
 import plotly.express as px
 #from charts import df_charts
-from charts_class import side_by_side_bar, option_data, compare_two, get_menu, get_survey_data
+from charts_class import side_by_side_bar, generate_line, generate_bar, generate_pie
+from data_retrieval import option_data, compare_two, get_menu, get_survey_data, week_data, get_5, pie_df
 #from charts import pie1, pie2, bar1, bar2
 
 app = Flask(__name__)
@@ -29,7 +30,12 @@ def calendar():
 
 @app.route('/analytics', methods=['GET'])
 def analytics():
-    return render_template('analytics.html')#, pie1=pie1, pie2=pie2, bar1 = bar1, bar2=bar2)
+    pie_dist=generate_pie(pie_df(), 'Distribution by Rating')
+    bar_top = generate_bar(get_5("bottom"),0,1,'Average Rating for 5 Lowest Rated Food Options',[0,5])
+    bar_bottom = generate_bar(get_5("top"),0,1,'Average Rating for 5 Highest Rated Food Options',[0,5])
+    line=generate_line(week_data())
+
+    return render_template('analytics.html', line=line,bar1=bar_top,bar2=bar_bottom, pie1=pie_dist)#, pie1=pie1, pie2=pie2, bar1 = bar1, bar2=bar2)
 
 @app.route('/calendar_retrieval', methods=['POST']) 
 def calendar_retrieval(): 
