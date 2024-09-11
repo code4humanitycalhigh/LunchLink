@@ -39,14 +39,15 @@ def generate_pie(df,title, colors = None):
     return div
 def generate_bar(df, x_col, y_col_s, title, y_range,colors=None):
     df['category'] = [str(i) for i in df.index] 
-    fig = px.bar(df, x=df.columns[x_col], y=df.columns[y_col_s:],
-            color = 'category',
+    fig = px.bar(df, x='Name of Option', y='Average Rating out of 5',
+            color = 'Name of Option',
             color_discrete_sequence=colors,
             #barmode="overlay",
              title=title)
     
+    
     fig.update_layout(
-        showlegend=False,
+        #showlegend=False,
         yaxis_range=y_range,
         plot_bgcolor='rgba(250,250,250,0)',
         paper_bgcolor='rgba(250,250,250,0)',
@@ -56,10 +57,11 @@ def generate_bar(df, x_col, y_col_s, title, y_range,colors=None):
     )
     fig.update_xaxes(
         ticks='inside',
+        showticklabels=False,
         gridcolor='white'
     )  
     fig.update_yaxes(
-        ticks='inside',
+        ticks='inside',   
         showline=True,
         linecolor='white',
         gridcolor='white'
@@ -67,6 +69,14 @@ def generate_bar(df, x_col, y_col_s, title, y_range,colors=None):
     fig.update_traces(
         marker_line_width = 0
     )
+
+    fig.update_layout(legend=dict(
+            orientation="h",
+            yanchor="bottom",
+            y=1.02,
+            xanchor="right",
+            x=1
+    ))
     
     #fig.show()
     div = plotly.offline.plot(fig, include_plotlyjs=False, output_type='div', config={'displayModeBar': False})
@@ -165,6 +175,8 @@ def generate_line(df):
     #fig.show()
     div = plotly.offline.plot(fig, include_plotlyjs=False, output_type='div', config={'displayModeBar': False})
     return div
+
+#bar_top = generate_bar(get_5("bottom"),0,1,'Average Rating for 5 Lowest Rated Food Options',[0,5])
 
 
 

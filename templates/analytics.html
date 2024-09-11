@@ -4,9 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../static/css/style.css">
+    <script src="../static/js/contentTransition.js"></script>
     <link href='https://fonts.googleapis.com/css?family=Assistant' rel='stylesheet'>
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/he/1.2.0/he.min.js"></script>
+    
     <!-- <script src="script.js"></script> -->
     <title>Document</title>
 </head>
@@ -24,6 +26,11 @@
         </div>
     </header>
     <!-- Main body -->
+    <!--<section id="a">
+      <img src="../static/images/food-bowl.png" id="background">
+      <h1 class="home1-text04" id="txt">Optimization</h1>
+      <a href="#" id="btn" onclick="transition()">Explore</a>
+    </section>-->
     <div class="analytics-header">
       <h1>ANALYTICS</h1>
     </div>
@@ -40,15 +47,6 @@
                   })
                 </script>
                 <div id="pie1"></div>
-
-                <script src="../static/js/loadCharts.js"></script>
-                <script type="text/javascript">
-                    window.addEventListener('load', function () {
-                      var graph = ('{{pie2}}');
-                      createGraph(graph, "pie2");
-                    })
-                  </script>
-                <div id="pie2"></div>
 
           </div>
           <div class="bars">

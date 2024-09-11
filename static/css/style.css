@@ -266,18 +266,14 @@ tr:nth-child(even) {
 
 #pie1{
   margin-top: 2.5%;
-  height: 50%;
+  height: 80%;
   width: 100%;
 }
 
-#pie2{
-  margin-top: 2.5%;
-  height: 50%;
-  width: 100%;
-}
+
 
 .bars{
-  width: 70vw;
+  width: 65vw;
   height: 100%;
   display: flex;
   flex-direction: row;
@@ -285,12 +281,12 @@ tr:nth-child(even) {
 
 #bar1{
   margin-left: 1%;
-  height: 100%;
+  height: 80%;
   width: 49%;
 }
 #bar2{
   margin-left: 1%;
-  height: 100%;
+  height: 80%;
   width: 49%;
 }
 
