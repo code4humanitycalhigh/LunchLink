@@ -264,7 +264,7 @@ tr:nth-child(even) {
 }
 
 #pie1{
-  margin-top: 2.5%;
+  margin-top: 6.5%;
   height: 80%;
   width: 100%;
 }
@@ -279,11 +279,13 @@ tr:nth-child(even) {
 }
 
 #bar1{
+  margin-top: 4%;
   margin-left: 1%;
   height: 80%;
   width: 49%;
 }
 #bar2{
+  margin-top: 4%;
   margin-left: 1%;
   height: 80%;
   width: 49%;

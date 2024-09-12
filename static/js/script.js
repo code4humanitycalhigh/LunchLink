@@ -78,8 +78,8 @@ const generateCalendar = (month, year) => {
     let avg2 = dataSide.querySelector('.avg-2');
     let per1 = dataSide.querySelector('.per-1');
     let per2 = dataSide.querySelector('.per-2');
-    let total1 = dataSide.querySelector('.total-1');
-    let total2 = dataSide.querySelector('.total-2');
+    //let total1 = dataSide.querySelector('.total-1');
+    //let total2 = dataSide.querySelector('.total-2');
     let noData = document.querySelector(".no-data-shown");
     let bar1=document.querySelector('.bar-chart')
     
@@ -144,10 +144,10 @@ const generateCalendar = (month, year) => {
                                     ? response.option_list[0] : response.option_list[1];
                       opt2.innerHTML = response.avg_list[0] < response.avg_list[1] 
                                     ? response.option_list[0] : response.option_list[1];
-                      total1.innerHTML = response.avg_list[0] >= response.avg_list[1] 
-                                    ? response.total_ratings[0] : response.total_ratings[1];
-                      total2.innerHTML = response.avg_list[0] < response.avg_list[1] 
-                                    ? response.total_ratings[0] : response.total_ratings[1];
+                      //total1.innerHTML = response.avg_list[0] >= response.avg_list[1] 
+                      //              ? response.total_ratings[0] : response.total_ratings[1];
+                      //total2.innerHTML = response.avg_list[0] < response.avg_list[1] 
+                      //              ? response.total_ratings[0] : response.total_ratings[1];
                       per1.innerHTML = response.avg_list[0] >= response.avg_list[1] 
                                     ? response.percentages[0] : response.percentages[1];
                       per2.innerHTML = response.avg_list[0] < response.avg_list[1] 

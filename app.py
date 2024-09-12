@@ -20,19 +20,16 @@ def homepage():
 
     return render_template('home.html', wc=week_comp, tc=total_comp, tr=total_rat, ac=api_calls)
 
-@app.route('/log', methods=['GET'])
-def log():
-    return render_template('log.html')
 
 @app.route('/calendar', methods=['GET'])
 def calendar():
-    return render_template('calendar2.html')
+    return render_template('calendar.html')
 
 @app.route('/analytics', methods=['GET'])
 def analytics():
-    pie_dist=generate_pie(pie_df(), 'Distribution by Rating')
-    bar_top = generate_bar(get_5("bottom"),0,1,'Average Rating for 5 Lowest Rated Food Options',[0,5])
-    bar_bottom = generate_bar(get_5("top"),0,1,'Average Rating for 5 Highest Rated Food Options',[0,5])
+    pie_dist=generate_pie(pie_df(), 'Distribution by Rating (out of 5)')
+    bar_top = generate_bar(get_5("bottom"),0,1,'5 Lowest Rated Food Options',[0,5])
+    bar_bottom = generate_bar(get_5("top"),0,1,'5 Highest Rated Food Options',[0,5])
     line=generate_line(week_data())
 
     return render_template('analytics.html', line=line,bar1=bar_top,bar2=bar_bottom, pie1=pie_dist)#, pie1=pie1, pie2=pie2, bar1 = bar1, bar2=bar2)

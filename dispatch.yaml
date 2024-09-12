@@ -1,0 +1,3 @@
+dispatch:
+  - url: "lunchlink.net"
+    service: www
