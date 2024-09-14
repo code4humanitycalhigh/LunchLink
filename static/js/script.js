@@ -82,6 +82,7 @@ const generateCalendar = (month, year) => {
     //let total2 = dataSide.querySelector('.total-2');
     let noData = document.querySelector(".no-data-shown");
     let bar1=document.querySelector('.bar-chart')
+    let loader = document.querySelector('#loader-wrapper');
     
 
     if (i >= first_day.getDay()) {
@@ -109,7 +110,7 @@ const generateCalendar = (month, year) => {
 
   
         document.querySelector('.d'+String(d)).addEventListener('click', function() {
-
+            loader.style.display = 'inline-block';
             dataSide.style.display = 'flex';
             text.innerHTML=`${month_names[month]} ${d} ${y}`;
             console.log(`month: ${m}, day: ${d}, year: ${y}`);
@@ -179,7 +180,7 @@ const generateCalendar = (month, year) => {
             }
             
         
-             
+            loader.style.display = 'none';
             
         });
         
