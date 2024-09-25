@@ -27,9 +27,10 @@ def calendar():
 
 @app.route('/analytics', methods=['GET'])
 def analytics():
-    pie_dist=generate_pie(pie_df(), 'Distribution by Rating (out of 5)')
-    bar_top = generate_bar(get_5("bottom"),0,1,'5 Lowest Rated Food Options',[0,5])
-    bar_bottom = generate_bar(get_5("top"),0,1,'5 Highest Rated Food Options',[0,5])
+    colors=["#849ccc","#95b8d1","#b8e0d2","#d6eadf","#eac4d5"]
+    pie_dist=generate_pie(pie_df(), 'Distribution by Rating (out of 5)', colors)
+    bar_top = generate_bar(get_5("bottom"),0,1,'5 Lowest Rated Food Options',[0,5], colors)
+    bar_bottom = generate_bar(get_5("top"),0,1,'5 Highest Rated Food Options',[0,5], colors)
     line=generate_line(week_data())
 
     return render_template('analytics.html', line=line,bar1=bar_top,bar2=bar_bottom, pie1=pie_dist)#, pie1=pie1, pie2=pie2, bar1 = bar1, bar2=bar2)

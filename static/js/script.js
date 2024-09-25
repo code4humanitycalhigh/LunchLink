@@ -110,7 +110,9 @@ const generateCalendar = (month, year) => {
 
   
         document.querySelector('.d'+String(d)).addEventListener('click', function() {
+            
             loader.style.display = 'inline-block';
+            console.log("after gay sex");
             dataSide.style.display = 'flex';
             text.innerHTML=`${month_names[month]} ${d} ${y}`;
             console.log(`month: ${m}, day: ${d}, year: ${y}`);
@@ -135,6 +137,10 @@ const generateCalendar = (month, year) => {
                                         total_ratings: ${response.total_ratings}
                                         percenteages: ${response.percentages}
                                         `);
+
+                      //put here
+                      loader.style.display = 'none';
+                      console.log("gay sex = none");
 
                       //checks which value is bigger, then assigns that index to the first
                       avg1.innerHTML = response.avg_list[0] >= response.avg_list[1] 
@@ -180,7 +186,6 @@ const generateCalendar = (month, year) => {
             }
             
         
-            loader.style.display = 'none';
             
         });
         
