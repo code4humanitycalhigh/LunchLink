@@ -37,14 +37,46 @@ header{
 
 }
 
+.nav-right{
+  margin-bottom: 5px;
+}
+
 .nav-right a{
-  padding-left: 100px;
-  color: inherit;
-  
+  color: white;
   text-decoration: none;
-  font-size: 15px;
-  
-  
+  margin: 0px 10px;
+  font-size: 17px;
+  padding: 10px 10px;
+  position: relative;
+  z-index: 0;
+  cursor: pointer;
+}
+.nav-right a:before, .nav-right a:after
+{
+    position: absolute;
+    width: 100%;
+    height: 2.5px;
+    left: 0px;
+    content: '';
+    background: #FFF;
+    opacity: 0.5;
+    transition: all 0.3s;
+}
+
+.nav-right a:before
+{
+    top: 0px;
+} 
+
+.nav-right a:after
+{
+    bottom: 0px;
+}
+
+.nav-right a:hover:before, .nav-right a:hover:after
+{
+    height: 100%;
+    opacity: 0.3;
 }
 
 #graph{
