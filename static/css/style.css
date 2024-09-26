@@ -43,7 +43,18 @@ header{
 .logo{
   color: white;
   padding-left:10px;
+  height:30px;
+  width:200px;
+  
 }
+.logo img {
+ 
+  width:135px;
+  height:35px;
+ 
+  
+}
+
 .nav-right a{
   color: white;
   text-decoration: none;
