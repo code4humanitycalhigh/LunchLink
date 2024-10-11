@@ -44,8 +44,8 @@ def calendar_retrieval():
     month=data['month']
     year=data['year']
 
-    [option1,option2]=get_menu(day,month,year) #charts_class.py
-    avg_list, ratings_list=option_data(option1,option2) #charts_class.py
+    [option1,option2]=get_menu(day,month,year) 
+    avg_list, ratings_list=option_data(option1,option2) 
     avg_list=[i for i in avg_list]
     bar = side_by_side_bar(option1, option2)
     percentage_list=[str(round(i*100))+"%" for i in compare_two(avg_list)]

@@ -13,10 +13,11 @@ def get_menu(day, month, year,names=False):
     df_menu=pd.read_csv("data/menu.csv")
     str_format=str(month)+"/"+str(day)+"/"+str(year)
     
+    
     #returns list len 2
 
     print(str_format)
-    items=df_menu.loc[df_menu['Date'] == str_format, ['Item1','Item2']].values.tolist()[0]
+    items=df_menu.loc[df_menu['date'] == str_format, ['primary','secondary']].values.tolist()[0]
     
        
     if names:
@@ -52,7 +53,7 @@ def data_side():
   avg_values=[]
   total_values=[]
   #print(column_list)
-  for i in column_list[1:26]:
+  for i in column_list[1:11]:
     value_list=df_data[i].values.tolist()
     avg=np.nanmean(value_list,axis=0)
     column_name="avg"+i[1:]
@@ -60,7 +61,7 @@ def data_side():
     total_values.append(np.count_nonzero(~np.isnan(value_list)))
 
   df=pd.DataFrame(data={
-    "Name of Option": column_list[1:26],
+    "Name of Option": column_list[1:11],
     "Average Rating out of 5": avg_values,
     "# of Ratings": total_values,
   })

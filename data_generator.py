@@ -26,13 +26,14 @@ for i in range(100): # generates 100 rows
   
   lst=[date_time]
 
-  for i in range(1,26):
+  for i in range(1,11):
     lst.append(get_random(i))
   lst.append("dietary_restriction")
   lst.append("feedback_example")
   
   df.loc[len(df)] = lst
   time += timedelta(minutes = 1)
+  
 
 
 df.to_csv("data/test_data.csv",index=None)
