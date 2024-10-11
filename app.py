@@ -38,22 +38,30 @@ def analytics():
 @app.route('/calendar_retrieval', methods=['POST']) 
 def calendar_retrieval(): 
     data = request.get_json() 
-    
-    
-    day=data['day']
-    month=data['month']
-    year=data['year']
+    try:
+        
+        day=data['day']
+        month=data['month']
+        year=data['year']
 
-    [option1,option2]=get_menu(day,month,year) 
-    avg_list, ratings_list=option_data(option1,option2) 
-    avg_list=[i for i in avg_list]
-    bar = side_by_side_bar(option1, option2)
-    percentage_list=[str(round(i*100))+"%" for i in compare_two(avg_list)]
-    [name1,name2]=get_menu(day,month,year, True)
-    #print(bar)
+        [option1,option2]=get_menu(day,month,year)
+        avg_list, ratings_list=option_data(option1,option2) 
+        avg_list=[i for i in avg_list]
+        bar = side_by_side_bar(option1, option2)
+        percentage_list=[str(round(i*100))+"%" for i in compare_two(avg_list)]
+        
+        [name1,name2]=get_menu(day,month,year, True)
+
+    except:
+        #if break of weekend
+        return jsonify(option_list=0, avg_list=0,
+                   total_ratings=0, percentages=0,
+                   no_school=True
+                   ) # return the result to JavaScript
     
     return jsonify(option_list=[name1,name2], avg_list=avg_list, 
                    total_ratings=ratings_list, percentages=percentage_list,
+                   no_school=False
                    ) # return the result to JavaScript
 
 @app.route('/bar_retrieval', methods=['GET','POST'])

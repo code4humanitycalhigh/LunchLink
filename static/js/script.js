@@ -83,6 +83,7 @@ const generateCalendar = (month, year) => {
     let noData = document.querySelector(".no-data-shown");
     let bar1=document.querySelector('.bar-chart')
     let loader = document.querySelector('#loader-wrapper');
+    let data_text = document.querySelector('no-data-text');
     
 
     if (i >= first_day.getDay()) {
@@ -112,25 +113,28 @@ const generateCalendar = (month, year) => {
         document.querySelector('.d'+String(d)).addEventListener('click', function() {
             
             loader.style.display = 'inline-block';
-            console.log("after gay sex");
             dataSide.style.display = 'flex';
             text.innerHTML=`${month_names[month]} ${d} ${y}`;
             console.log(`month: ${m}, day: ${d}, year: ${y}`);
-            if (wd=="Sunday"||wd=="Saturday"){
-                //implement weekend stuff
-                dataSide.style.visibility = 'hidden'; 
-                noData.style.display = 'flex';
-                
-            } else {
-                
-                dataSide.style.visibility = 'visible';  
-                noData.style.display = 'none';
-                $.ajax({ 
-                  url: '/calendar_retrieval', 
-                  type: 'POST', 
-                  contentType: 'application/json', 
-                  data: JSON.stringify({ 'day': d, 'month' : m, 'year':y}), 
-                  success: function(response) { 
+        
+            //implement weekend stuff
+            dataSide.style.visibility = 'hidden'; 
+            noData.style.display = 'flex';
+            
+        
+            
+            dataSide.style.visibility = 'visible';  
+            noData.style.display = 'none';
+            
+            $.ajax({ 
+              url: '/calendar_retrieval', 
+              type: 'POST', 
+              contentType: 'application/json', 
+              data: JSON.stringify({ 'day': d, 'month' : m, 'year':y}), 
+              success: function(response) {
+                  let bool_school = response.no_school
+                  if (bool_school == false){
+              
                       //document.getElementById('output').innerHTML = response.result; 
                       console.log(`names: ${response.option_list}   
                                         avgs: ${response.avg_list}
@@ -140,8 +144,6 @@ const generateCalendar = (month, year) => {
 
                       //put here
                       loader.style.display = 'none';
-                      console.log("gay sex = none");
-
                       //checks which value is bigger, then assigns that index to the first
                       avg1.innerHTML = response.avg_list[0] >= response.avg_list[1] 
                                     ? response.avg_list[0] : response.avg_list[1];
@@ -161,29 +163,38 @@ const generateCalendar = (month, year) => {
                                     ? response.percentages[0] : response.percentages[1];
                       
                       //Plotly.react('external', data, {}); 
+                  
+            
+            
+                      fetch(`/bar_retrieval`, {
+                        method: "POST",
+                        credentials: "include",
+                        body: JSON.stringify({ 'day': d, 'month' : m, 'year':y}),
+                        cache: "no-cache",
+                        headers: new Headers({
+                          "content-type": "application/json"
+                        })})
+                      .then(resp => resp.ok && resp.json())
+                      .then(data => {
+                          if (!data) return;
+                          console.log(data);
+                          Plotly.react('external', data, {});
+                    
+                      });
+                  } else {
+                    loader.style.display = 'none';
+                    dataSide.style.visibility = 'hidden'; 
+                    noData.style.display = 'flex';
+                    noData.textContent = 'No Menu Posted';
+                  }
 
-
-                  }, 
-                  error: function(error) { 
-                      console.log(error);
-                  } 
-                });
-
-                fetch(`/bar_retrieval`, {
-                  method: "POST",
-                  credentials: "include",
-                  body: JSON.stringify({ 'day': d, 'month' : m, 'year':y}),
-                  cache: "no-cache",
-                  headers: new Headers({
-                    "content-type": "application/json"
-                  })})
-                .then(resp => resp.ok && resp.json())
-                .then(data => {
-                    if (!data) return;
-                    console.log(data);
-                    Plotly.react('external', data, {}); 
+              }, 
+              error: function(error) { 
+                  console.log(error);
+              } 
             });
-            }
+          
+          
             
         
             
