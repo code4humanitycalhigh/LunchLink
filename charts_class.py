@@ -97,7 +97,7 @@ def side_by_side_bar(O1,O2): #O1 and O2 do NOT represent the columns O1 and O2
     df_labels=pd.read_csv("data/labels.csv")
     
     [name1,name2]=[df_labels.loc[df_labels['FormOption'] == i, 'LunchItem'].values.tolist()[0] for i in [O1,O2]]
-    df_raw=pd.read_csv("data/test_data.csv")
+    df_raw=pd.read_csv("data/form.csv")
     
     df_colors=data_side()
     #print(df_colors["Name of Option"])

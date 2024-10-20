@@ -16,6 +16,7 @@ app = Flask(__name__)
 def homepage():
      #updates form.csv
     df=get_sheets_data()
+    df.to_csv("data/form.csv", index=None)
     week_comp, total_comp, total_rat, api_calls = get_survey_data()
 
     return render_template('home.html', wc=week_comp, tc=total_comp, tr=total_rat, ac=api_calls)

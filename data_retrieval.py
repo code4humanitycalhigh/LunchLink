@@ -48,7 +48,7 @@ def compare_two(avg_list):
 
 #counting
 def data_side():
-  df_data = pd.read_csv("data/test_data.csv")#get_sheets_data()
+  df_data = pd.read_csv("data/form.csv")#get_sheets_data()
   column_list=df_data.columns.values.tolist()
   avg_values=[]
   total_values=[]
@@ -80,7 +80,7 @@ def option_data(O1, O2):
 #print(side_by_side_bar('O1','O2'))
 
 def get_survey_data():
-    df=pd.read_csv("data/test_data.csv")
+    df=pd.read_csv("data/form.csv")
     total_completions=[i.split(" ")[0] for i in df.Timestamp.values.tolist()]
     today = date.today() # or you can do today = date.today() for today's date
     this_week=[j.strftime('%#m/%#d/%Y') for j in [today - timedelta(days=i) for i in range(0,7)]]
@@ -93,7 +93,7 @@ def get_survey_data():
 
     
 def week_data():
-    df_data=pd.read_csv("data/test_data.csv")
+    df_data=pd.read_csv("data/form.csv")
     total=[i.split(" ")[0] for i in df_data.Timestamp.values.tolist()]
     today = date.today() # or you can do today = date.today() for today's date
     this_week=[j.strftime('%#m/%#d/%Y') for j in [today - timedelta(days=i) for i in range(0,7)]][::-1]
@@ -128,7 +128,7 @@ def get_5(par):
     return df
  
 def pie_df():
-    df_data=pd.read_csv("data/test_data.csv").drop(columns=["Timestamp","Dietary Restrictions",
+    df_data=pd.read_csv("data/form.csv").drop(columns=["Timestamp","Dietary Restrictions",
                                                             "Feedback"])
     ratings=[0,0,0,0,0] #1,2,3,4,5
     for i in df_data.columns.values.tolist():
