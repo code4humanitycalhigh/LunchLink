@@ -29,7 +29,6 @@ warnings.filterwarnings("ignore")
 # uses current fresh data, reduces errors, hallucinations
 
 #print(os.getenv('OPENAI_API_KEY'))
-#os.environ["OPENAI_API_KEY"] = "sk-proj-PzbMy2M8PJmlALMHasicT3BlbkFJYoPdtLhav17s0Ts7O2mQ"
 
 def rag_bot(prompt):
     os.environ["OPENAI_API_KEY"] = os.getenv('OPENAI_PRIVATE_KEY')
