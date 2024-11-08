@@ -56,7 +56,7 @@ def monthly_menu_update(year,month):
             #print(e)
             #print(len(i["menu_items"]))
             print("no menu published for: ", i["date"])
-monthly_menu_update(2024,11)
+#monthly_menu_update(2024,11)
 '''
 lst=list(set(lst)) #remove duplicates
 print(lst)
