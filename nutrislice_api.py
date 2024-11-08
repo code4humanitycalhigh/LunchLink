@@ -4,6 +4,8 @@ import calendar
 from data_retrieval import get_menu
 import pandas as pd
 global lst 
+from natsort import index_natsorted
+import numpy as np
 lst=[]
 
 def add_data(date, primary, secondary):
@@ -31,12 +33,12 @@ def add_data(date, primary, secondary):
   
 
   menu.loc[-1] = [date, primary, secondary]
-  menu = menu.sort_values(by="date",key=lambda x: np.argsort(index_natsorted(df["date"])))
+  menu = menu.sort_values(by="date",key=lambda x: np.argsort(index_natsorted(menu["date"])))
   menu.to_csv("data/menu.csv", index = None)
 
 
 def monthly_menu_update(year,month):
-  num_days = calendar.monthrange(2024, 10)[1]
+  num_days = calendar.monthrange(year, month)[1]
   days = [datetime.date(year, month, day).strftime('%Y-%m-%d') for day in range(1, num_days+1)]
 
   for day in days:
@@ -46,13 +48,15 @@ def monthly_menu_update(year,month):
       for i in data["days"]:
         if i["date"] == day:
           try:
+            #print(i["menu_items"][1])
             primary = i["menu_items"][0]["food"]["name"]
             secondary = i["menu_items"][1]["food"]["name"]
             add_data(i["date"], primary, secondary)
           except Exception as e:
             #print(e)
+            #print(len(i["menu_items"]))
             print("no menu published for: ", i["date"])
-#monthly_menu_update(2024,10)
+monthly_menu_update(2024,11)
 '''
 lst=list(set(lst)) #remove duplicates
 print(lst)
